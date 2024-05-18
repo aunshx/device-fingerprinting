@@ -8,6 +8,7 @@ def get_os_from_user_agent(user_agent):
     return match.group(1) if match else ""
     
 def extract_user_agent(header):
+    # pull the user agent from the header
     match = re.search(r"User-Agent: (.*?)(?:\n|$)", header)
     return match.group(1) if match else ""
 
@@ -31,15 +32,3 @@ def process_json(json_file, csv_file):
 
 if __name__ == "__main__":
     process_json('./data/HASHED_combined_data_upto_oct_31_2023.json', './data/user-agent-os.csv')
-
-
-#open json file
-#f = open('HASHED_combined_data_opto_oct_31_2023.json')
-
-#read json file
-
-
-#create csv file
-
-#close json file
-#f.close
