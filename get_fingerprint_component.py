@@ -24,4 +24,4 @@ def extract_entry_components(input_filename, output_filename):
     print(f"Data has been extracted and saved to '{output_filename}'")
 
 # Example usage
-# extract_entry_components('data.json', 'extracted_data.json')
+extract_entry_components('./data/HASHED_combined_data_upto_oct_31_2023.json', './data/extracted_component_data.json')
