@@ -10,6 +10,10 @@ def extract_entry_components(input_filename, output_filename):
     extracted_data = []
 
     for entry in data:
+        components_str = entry[2]  # The JSON string with the components
+        components = ast.literal_eval(components_str)["fingerprint"]["components"]
+
+    for entry in data:
         entryId = entry[0]
         components_str = entry[2]
         try:
