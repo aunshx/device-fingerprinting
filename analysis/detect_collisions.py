@@ -19,3 +19,7 @@ def detect_collisions(file_path):
     print(f"Unique hashes: {unique_hashes}")
     print(f"Collisions detected: {collisions}")
     print(f"Collision rate: {collision_rate:.2f}%")
+
+# Example usage
+if __name__ == "__main__":
+    detect_collisions('./data/md5_hashed_components.csv')
