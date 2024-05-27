@@ -23,6 +23,7 @@ def extract_and_concatenate_components(entry):
             else:
                 value = str(value)
 
+            # Repeat the value based on the duration
             concatenated_string.append(value * duration)
 
         return {'entryId': entryId, 'concatenated_string': ''.join(concatenated_string)}
