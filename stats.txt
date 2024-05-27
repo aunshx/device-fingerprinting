@@ -1,0 +1,4 @@
+sha256
+Minimum Hamming distance: 46
+Maximum Hamming distance: 64
+Average Hamming distance: 60.00
