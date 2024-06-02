@@ -9,7 +9,7 @@ def extract_components(entry):
     try:
         # Use ast.literal_eval to safely evaluate the string as a dictionary
         components = ast.literal_eval(components_str)["fingerprint"]["components"]
-        return {'entryId': entryId, 'components': components}
+        return {'entryId': entryId, 'browserData': entry[1], 'operationDetails': entry[3], 'operationOutput': entry[4], 'components': components}
     except (SyntaxError, ValueError) as e:
         print(f"Error parsing components for entryId {entryId}: {e}")
         return None
@@ -43,4 +43,4 @@ def extract_entry_components(input_filename, output_filename):
     print(f"Data has been extracted and saved to '{output_filename}'")
 
 # Example usage
-extract_entry_components('./data/HASHED_combined_data_upto_oct_31_2023.json', './data/extracted_component_data.json')
+extract_entry_components('../data/HASHED_combined_data_upto_oct_31_2023.json', '../data/extracted_component_data.json')
