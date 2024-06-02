@@ -20,6 +20,14 @@ print("Loading data...")
 with open('./data/formatted_data_for_dtw.json', 'r') as file:
     data = json.load(file)
 
+# get only 1000 entries of each platform
+new_data = []
+for platform in ['Linux', 'Windows', 'iOS', 'macOS']:
+    platform_data = [item for item in data if item["platform"] == platform]
+    new_data.extend(platform_data[:5000])
+
+data = new_data
+
 # Convert the data to a DataFrame
 df = pd.DataFrame(data)
 
@@ -89,7 +97,7 @@ reduce_lr = ReduceLROnPlateau(monitor='val_loss', factor=0.2, patience=5, min_lr
 
 # Train the model
 print("Training the model...")
-history = model.fit(X_train, y_train, epochs=100, batch_size=64, validation_split=0.2, callbacks=[early_stopping, reduce_lr], verbose=2)
+history = model.fit(X_train, y_train, epochs=100, batch_size=128, validation_split=0.2, callbacks=[early_stopping, reduce_lr], verbose=2)
 
 # Save the trained model in native Keras format
 print("Saving the model...")
