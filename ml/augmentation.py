@@ -7,7 +7,7 @@ from sklearn.metrics import accuracy_score, classification_report
 from collections import Counter
 
 # Load data from JSON file
-with open('../data/extracted_component_data.json') as file:
+with open('./data/extracted_component_data.json') as file:
     data = json.load(file)
 
 # Prepare data for the model
