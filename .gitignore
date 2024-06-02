@@ -3,3 +3,4 @@ data/extracted_component_data.json
 data/extracted_and_reformatted_data.json
 data/formatted_data_for_dtw.json
 data/platform_data.csv
+weights/*

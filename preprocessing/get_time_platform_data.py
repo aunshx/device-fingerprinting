@@ -7,6 +7,7 @@ processing progress.
 
 import json
 from tqdm import tqdm
+import numpy as np
 
 # Determine the plaform of the data
 def determine_platform(platform):
@@ -25,7 +26,7 @@ def determine_platform(platform):
 def extract_fields(item):
     return {
         "entryId": item["entryId"],
-        "operationOutput": item["operationOutput"],
+        "operationOutput": np.fromstring(item["operationOutput"].strip('[]'), sep=',').tolist(),
         "platform": determine_platform(item["components"]["platform"]["value"])
     }
 

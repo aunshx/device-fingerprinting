@@ -1,0 +1,4 @@
+Mean length: 929.9467313244984
+Median length: 263.0
+90th percentile length: 2553.0
+95th percentile length: 4137.0
