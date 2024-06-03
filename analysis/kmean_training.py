@@ -45,7 +45,7 @@ X = scaler.fit_transform(X)
 
 # Perform K-Means clustering
 print("Performing K-Means clustering...")
-kmeans = KMeans(n_clusters=3, random_state=42)
+kmeans = KMeans(n_clusters=7, random_state=42)
 clusters = kmeans.fit_predict(X)
 
 # Add cluster labels to the DataFrame
@@ -56,23 +56,16 @@ print("Visualizing clusters...")
 pca = PCA(n_components=2)
 X_pca = pca.fit_transform(X)
 
+# Project the centroids onto the PCA components
+centroids_pca = pca.transform(kmeans.cluster_centers_)
+
 plt.figure(figsize=(10, 8))
-plt.scatter(X_pca[:, 0], X_pca[:, 1], c=clusters, cmap='viridis')
+plt.scatter(X_pca[:, 0], X_pca[:, 1], c=clusters, cmap='viridis', alpha=0.5, edgecolors='k')
+plt.scatter(centroids_pca[:, 0], centroids_pca[:, 1], c='red', marker='X', s=200, label='Centroids')
 plt.xlabel('PCA Component 1')
 plt.ylabel('PCA Component 2')
 plt.title('K-Means Clusters (PCA Projection)')
 plt.colorbar(label='Cluster Label')
+plt.legend()
 plt.show()
 
-# # Calculate the distribution of platforms within each cluster
-# cluster_counts = df.groupby(['cluster', 'platform']).size().unstack(fill_value=0)
-# cluster_proportions = cluster_counts.div(cluster_counts.sum(axis=1), axis=0)
-
-# # Visualize the distribution of platforms within each cluster
-# print("Visualizing platform distribution within clusters...")
-# cluster_proportions.plot(kind='bar', stacked=True, figsize=(10, 8))
-# plt.xlabel('Cluster')
-# plt.ylabel('Proportion')
-# plt.title('Platform Distribution within Clusters')
-# plt.legend(title='Platform')
-# plt.show()
