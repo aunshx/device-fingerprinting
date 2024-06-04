@@ -6,14 +6,18 @@ with open(file_path, 'r') as file:
     data = json.load(file)
 
 # Extract the required data into the desired format
-result = [
-    {
-        "entryId": entry["entryId"],
-        "platform": entry["components"]["platform"]["value"],
-        "operationOutput": entry["operationOutput"]
-    }
-    for entry in data
-]
+result = []
+for entry in data:
+    try:
+        operation_details = json.loads(entry["operationDetails"].replace("'", "\""))
+        if operation_details.get("executableName") == "exec_step":
+            result.append({
+                "entryId": entry["entryId"],
+                "platform": entry["components"]["platform"]["value"],
+                "operationOutput": entry["operationOutput"]
+            })
+    except (KeyError, json.JSONDecodeError, TypeError) as e:
+        print(f"Skipping entry due to error: {e}")
 
 # Save the result to a JSON file
 output_file_path = '../data_current/processed_data.json'
